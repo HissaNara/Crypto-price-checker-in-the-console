@@ -20,7 +20,7 @@ def price_loop():
         print(now,":",price)
         latest_time = now
         latest_price = price
-        time.sleep(1)
+        time.sleep(5)
 app = Flask(__name__)
 
 @app.route("/")
