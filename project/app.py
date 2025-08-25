@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,render_template_string
+from flask import Flask,jsonify,render_template
 import requests
 import time
 import threading
@@ -22,24 +22,10 @@ def price_loop():
 
 @app.route("/")
 def index():
-    return render_template_string("""
-        <h1>BTC/USDT 価格</h1>
-        <p id="output">Loading...</p>
-
-        <script>
-        async function fetchPrice() {
-            let res = await fetch("/price");
-            let data = await res.json();
-            document.getElementById("output").innerText =
-                data.now + " : " + data.price;
-        }
-        setInterval(fetchPrice, 1000);  // 1秒ごとに最新値で上書き
-        fetchPrice(); // 最初に1回呼び出す
-        </script>
-    """)
+    return render_template("index.html")
 
 @app.route("/price")
-def price():
+def get_price():
     return jsonify({"now": latest_time, "price": latest_price})
 
 if __name__ == "__main__":
