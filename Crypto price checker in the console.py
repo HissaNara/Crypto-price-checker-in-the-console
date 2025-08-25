@@ -11,7 +11,7 @@ def price_loop():
         data=requests.get(url).json()
         price=data["price"]
         now = time.strftime("%Y-%m-%d %H:%M:%S")
-        print(now,price)
+        print(now,":",price)
         time.sleep(1)
 
 @app.route("/")
